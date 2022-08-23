@@ -20,7 +20,9 @@
   ],
   "types": "types.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "node node_modules/may-it-serve",
+    "test": "playwright test",
+    "package-check": "package-check"
   },
   "dependencies": {
     "be-decorated": "0.0.133",
