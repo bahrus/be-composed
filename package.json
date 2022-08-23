@@ -6,6 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "be-decorated": "0.0.133",
+    "be-hive": "0.0.56"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bahrus/be-composed.git"
