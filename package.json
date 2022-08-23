@@ -1,17 +1,17 @@
 {
   "name": "be-composed",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "keywords": [
     "web-components",
     "web-component",
     "custom-element",
     "custom-elements"
-  ],  
+  ],
   "description": "Fire an event with different characteristics from the original event.",
   "main": "be-composed.js",
   "module": "be-composed.js",
   "type": "module",
-  "exports":{
+  "exports": {
     ".": "./be-composed.js",
     "./be-composed.js": "./be-composed.js"
   },
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
     "@playwright/test": "1.25.0",
-    "may-it-serve": "0.0.2"   
+    "may-it-serve": "0.0.2"
   },
   "repository": {
     "type": "git",
