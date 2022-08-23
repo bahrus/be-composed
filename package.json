@@ -1,8 +1,24 @@
 {
   "name": "be-composed",
   "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
+  "keywords": [
+    "web-components",
+    "web-component",
+    "custom-element",
+    "custom-elements"
+  ],  
+  "description": "Fire an event with different characteristics from the original event.",
+  "main": "be-composed.js",
+  "module": "be-composed.js",
+  "type": "module",
+  "exports":{
+    ".": "./be-composed.js",
+    "./be-composed.js": "./be-composed.js"
+  },
+  "files": [
+    "*.*"
+  ],
+  "types": "types.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,11 +26,16 @@
     "be-decorated": "0.0.133",
     "be-hive": "0.0.56"
   },
+  "devDependencies": {
+    "@skypack/package-check": "0.2.2",
+    "@playwright/test": "1.25.0",
+    "may-it-serve": "0.0.2"   
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bahrus/be-composed.git"
   },
-  "author": "",
+  "author": "anderson.bruce.b@gmail.com",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/bahrus/be-composed/issues"
