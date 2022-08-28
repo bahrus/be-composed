@@ -1,6 +1,6 @@
-import {BeDecoratedProps} from 'be-decorated/types';
+import {BeDecoratedProps, MinimalProxy} from 'be-decorated/types';
 
-export interface BeComposedVirtualProps{
+export interface BeComposedVirtualProps extends MinimalProxy{
     dispatch: {[key: string]: DispatchInfo}
 }
 
@@ -18,6 +18,5 @@ export interface BeComposedProps extends BeComposedVirtualProps{
 
 export interface BeComposedActions{
     onDispatch(self: this): void;
-    intro(proxy: Element & BeComposedVirtualProps, target: Element, beDecorProps: BeDecoratedProps): void;
     finale(proxy: Element & BeComposedVirtualProps, target: Element, beDecorProps: BeDecoratedProps): void;
 }

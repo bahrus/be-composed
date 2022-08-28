@@ -2,19 +2,16 @@ import {define, BeDecoratedProps} from 'be-decorated/be-decorated.js';
 import { BeComposedActions, BeComposedProps, BeComposedVirtualProps, DispatchInfo } from './types';
 import {register} from 'be-hive/register.js';
 
-export class BeComposed implements BeComposedActions{
-    #target!: Element | undefined;
+export class BeComposed extends EventTarget implements BeComposedActions{
     #signals: {[key: string]: AbortController} = {};
-    intro(proxy: Element & BeComposedVirtualProps, target: Element, beDecorProps: BeDecoratedProps){
-        this.#target = target;
-    }
-    onDispatch({dispatch}: this): void {
+
+    onDispatch({dispatch, self}: this): void {
         this.disconnect();
         for(const key in dispatch){
             const c = new AbortController();
             const dispatchInfo = dispatch[key];
             const {as, bubbles, cancelable, composed, stopPropagation} = dispatchInfo;
-            this.#target!.addEventListener(key, originalEvent => {
+            self.addEventListener(key, originalEvent => {
                 if(stopPropagation) originalEvent.stopPropagation();
                 const ce = new CustomEvent(as, {
                     bubbles,
@@ -25,7 +22,7 @@ export class BeComposed implements BeComposedActions{
                         originalEvent,
                     }
                 });
-                this.#target!.dispatchEvent(ce);
+                self.dispatchEvent(ce);
             }, {
                 signal: c.signal,
             });
@@ -41,7 +38,6 @@ export class BeComposed implements BeComposedActions{
     }
     finale(proxy: Element & BeComposedVirtualProps, target: Element, beDecorProps: BeDecoratedProps){
         this.disconnect();
-        this.#target = undefined;
     }
 }
 
@@ -60,7 +56,6 @@ define<BeComposedProps & BeDecoratedProps<BeComposedProps, BeComposedActions>, B
             upgrade,
             ifWantsToBe,
             virtualProps:['dispatch'],
-            intro: 'intro',
             finale: 'finale',
 
         },
