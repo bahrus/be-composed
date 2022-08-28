@@ -2,7 +2,7 @@ import { define } from 'be-decorated/be-decorated.js';
 import { register } from 'be-hive/register.js';
 export class BeComposed extends EventTarget {
     #signals = {};
-    onDispatch({ dispatch, self }) {
+    onDispatch({ dispatch, self, proxy }) {
         this.disconnect();
         for (const key in dispatch) {
             const c = new AbortController();
@@ -26,6 +26,7 @@ export class BeComposed extends EventTarget {
             });
             this.#signals[key] = c;
         }
+        proxy.resolved = true;
     }
     disconnect() {
         for (const key in this.#signals) {

@@ -10,7 +10,6 @@
   "description": "Fire an event with different characteristics from the original event.",
   "main": "be-composed.js",
   "module": "be-composed.js",
-  "type": "module",
   "exports": {
     ".": "./be-composed.js",
     "./be-composed.js": "./be-composed.js"
@@ -25,13 +24,15 @@
     "package-check": "package-check"
   },
   "dependencies": {
-    "be-decorated": "0.0.146",
+    "be-decorated": "0.0.147",
     "be-hive": "0.0.57"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
-    "@playwright/test": "1.25.0",
-    "may-it-serve": "0.0.2"
+    "@playwright/test": "1.25.1",
+    "may-it-serve": "0.0.2",
+    "xtal-editor": "0.0.187",
+    "xtal-shell": "0.0.27"
   },
   "repository": {
     "type": "git",

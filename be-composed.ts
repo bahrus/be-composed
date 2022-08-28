@@ -5,7 +5,7 @@ import {register} from 'be-hive/register.js';
 export class BeComposed extends EventTarget implements BeComposedActions{
     #signals: {[key: string]: AbortController} = {};
 
-    onDispatch({dispatch, self}: this): void {
+    onDispatch({dispatch, self, proxy}: this): void {
         this.disconnect();
         for(const key in dispatch){
             const c = new AbortController();
@@ -28,6 +28,7 @@ export class BeComposed extends EventTarget implements BeComposedActions{
             });
             this.#signals[key] = c;
         }
+        proxy.resolved = true;
     }
     disconnect(){
         for(const key in this.#signals){
