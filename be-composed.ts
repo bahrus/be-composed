@@ -1,11 +1,11 @@
 import {define, BeDecoratedProps} from 'be-decorated/be-decorated.js';
-import { BeComposedActions, BeComposedProps, BeComposedVirtualProps, DispatchInfo } from './types';
+import { BeComposedActions, BeComposedVirtualProps, PP, Proxy } from './types';
 import {register} from 'be-hive/register.js';
 
 export class BeComposed extends EventTarget implements BeComposedActions{
     #signals: {[key: string]: AbortController} = {};
 
-    onDispatch({dispatch, self, proxy}: this): void {
+    onDispatch({dispatch, self, proxy}: PP): void {
         this.disconnect();
         for(const key in dispatch){
             const c = new AbortController();
@@ -37,12 +37,10 @@ export class BeComposed extends EventTarget implements BeComposedActions{
         }
         this.#signals = {};
     }
-    finale(proxy: Element & BeComposedVirtualProps, target: Element, beDecorProps: BeDecoratedProps){
+    finale(proxy: Proxy, target: Element, beDecorProps: BeDecoratedProps){
         this.disconnect();
     }
 }
-
-export interface BeComposed extends BeComposedProps{}
 
 const tagName = 'be-composed';
 
@@ -50,7 +48,7 @@ const ifWantsToBe = 'composed';
 
 const upgrade = '*';
 
-define<BeComposedProps & BeDecoratedProps<BeComposedProps, BeComposedActions>, BeComposedActions>({
+define<BeComposedVirtualProps & BeDecoratedProps<BeComposedVirtualProps, BeComposedActions>, BeComposedActions>({
     config:{
         tagName,
         propDefaults:{

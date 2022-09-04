@@ -1,8 +1,20 @@
 import {BeDecoratedProps, MinimalProxy} from 'be-decorated/types';
 
-export interface BeComposedVirtualProps extends MinimalProxy{
-    dispatch: {[key: string]: DispatchInfo}
+
+export interface BeComposedEndUserProps {
+    dispatch?: {[key: string]: DispatchInfo};
 }
+export interface BeComposedVirtualProps extends BeComposedEndUserProps, MinimalProxy{
+    
+}
+
+export type Proxy = Element & BeComposedVirtualProps;
+
+export interface ProxyProps extends BeComposedVirtualProps{
+    proxy: Proxy;
+}
+
+export type PP = ProxyProps;
 
 export interface DispatchInfo{
     as: string,
@@ -12,11 +24,8 @@ export interface DispatchInfo{
     stopPropagation: boolean,
 }
 
-export interface BeComposedProps extends BeComposedVirtualProps{
-    proxy: Element & BeComposedVirtualProps;
-}
 
 export interface BeComposedActions{
-    onDispatch(self: this): void;
-    finale(proxy: Element & BeComposedVirtualProps, target: Element, beDecorProps: BeDecoratedProps): void;
+    onDispatch(pp: PP): void;
+    finale(proxy: Proxy, target: Element, beDecorProps: BeDecoratedProps): void;
 }
