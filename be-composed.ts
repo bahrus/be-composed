@@ -1,8 +1,8 @@
 import {define, BeDecoratedProps} from 'be-decorated/be-decorated.js';
-import { BeComposedActions, BeComposedVirtualProps, PP, Proxy } from './types';
+import { Actions, VirtualProps, PP, Proxy } from './types';
 import {register} from 'be-hive/register.js';
 
-export class BeComposed extends EventTarget implements BeComposedActions{
+export class BeComposed extends EventTarget implements Actions{
     #signals: {[key: string]: AbortController} = {};
 
     onDispatch({dispatch, self, proxy}: PP): void {
@@ -48,7 +48,7 @@ const ifWantsToBe = 'composed';
 
 const upgrade = '*';
 
-define<BeComposedVirtualProps & BeDecoratedProps<BeComposedVirtualProps, BeComposedActions>, BeComposedActions>({
+define<VirtualProps & BeDecoratedProps<VirtualProps, Actions>, Actions>({
     config:{
         tagName,
         propDefaults:{
