@@ -24,14 +24,13 @@
     "package-check": "package-check"
   },
   "dependencies": {
-    "be-decorated": "0.0.176",
-    "be-hive": "0.0.74"
+    "be-decorated": "0.0.182",
+    "be-hive": "0.0.76"
   },
   "devDependencies": {
     "@skypack/package-check": "0.2.2",
     "@playwright/test": "1.27.1",
     "may-it-serve": "0.0.3",
-    "xtal-editor": "0.0.196",
     "xtal-shell": "0.0.27"
   },
   "repository": {
