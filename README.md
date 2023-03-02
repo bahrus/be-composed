@@ -14,7 +14,7 @@ Doing so imposes a bit of an expectation that the name should be namespaced or m
 
 In the extreme, we could use a guid, as demonstrated below: 
 
-## Syntax
+## JavaScriptObjectNotation
 
 ```html
 <input be-composed='{
@@ -31,3 +31,14 @@ In the extreme, we could use a guid, as demonstrated below:
 ```
 
 "stopPropagation" prevents the original event from continuing to propagate.  The original event and detail are placed inside the detail of the new event.
+
+## Hemingway Notation [TODO]
+
+```html
+<input be-composed='
+    On change dispatch 402735ed-b9e8-4ef4-9e0d-3a6b385de863 as name of event.
+    Bubble said event.
+    Compose said event.
+    Stop propagation of said event.
+'>
+```
