@@ -1,14 +1,21 @@
-import { define } from 'be-decorated/DE.js';
+import { BE, propDefaults, propInfo } from 'be-enhanced/BE.js';
+import { XE } from 'xtal-element/XE.js';
 import { register } from 'be-hive/register.js';
-export class BeComposed extends EventTarget {
+export class BeComposed extends BE {
+    static get beConfig() {
+        return {
+            parse: true,
+        };
+    }
     #signals = {};
-    onDispatch({ dispatch, self, proxy }) {
+    onDispatch(self) {
+        const { dispatch, enhancedElement } = self;
         this.disconnect();
         for (const key in dispatch) {
             const c = new AbortController();
             const dispatchInfo = dispatch[key];
             const { as, bubbles, cancelable, composed, stopPropagation } = dispatchInfo;
-            self.addEventListener(key, originalEvent => {
+            enhancedElement.addEventListener(key, originalEvent => {
                 if (stopPropagation)
                     originalEvent.stopPropagation();
                 const ce = new CustomEvent(as, {
@@ -20,13 +27,15 @@ export class BeComposed extends EventTarget {
                         originalEvent,
                     }
                 });
-                self.dispatchEvent(ce);
+                enhancedElement.dispatchEvent(ce);
             }, {
                 signal: c.signal,
             });
             this.#signals[key] = c;
         }
-        proxy.resolved = true;
+        return {
+            resolved: true
+        };
     }
     disconnect() {
         for (const key in this.#signals) {
@@ -35,28 +44,26 @@ export class BeComposed extends EventTarget {
         }
         this.#signals = {};
     }
-    finale(proxy, target, beDecorProps) {
+    detach(detachedElement) {
         this.disconnect();
     }
 }
 const tagName = 'be-composed';
 const ifWantsToBe = 'composed';
 const upgrade = '*';
-define({
+const xe = new XE({
     config: {
         tagName,
         propDefaults: {
-            upgrade,
-            ifWantsToBe,
-            virtualProps: ['dispatch'],
-            finale: 'finale',
+            ...propDefaults,
+        },
+        propInfo: {
+            ...propInfo
         },
         actions: {
             onDispatch: 'dispatch'
         }
     },
-    complexPropDefaults: {
-        controller: BeComposed
-    }
+    superclass: BeComposed
 });
 register(ifWantsToBe, upgrade, tagName);
