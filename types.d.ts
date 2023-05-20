@@ -1,20 +1,22 @@
-import {BeDecoratedProps, MinimalProxy} from 'be-decorated/types';
+import { ActionOnEventConfigs } from "trans-render/froop/types";
+import {IBE} from 'be-enhanced/types';
 
-
-export interface EndUserProps {
+export interface EndUserProps extends IBE {
     dispatch?: {[key: string]: DispatchInfo};
 }
-export interface VirtualProps extends EndUserProps, MinimalProxy{
+export interface AllProps extends EndUserProps{
     
 }
 
-export type Proxy = Element & VirtualProps;
+export type AP = AllProps;
 
-export interface ProxyProps extends VirtualProps{
-    proxy: Proxy;
-}
+export type PAP = Partial<AP>;
 
-export type PP = ProxyProps;
+export type ProPAP = Promise<PAP>;
+
+export type POA = [PAP | undefined, ActionOnEventConfigs<PAP, Actions>]
+
+export type ProPOA = Promise<POA | undefined>;
 
 export interface DispatchInfo{
     as: string,
@@ -26,6 +28,5 @@ export interface DispatchInfo{
 
 
 export interface Actions{
-    onDispatch(pp: PP): void;
-    finale(proxy: Proxy, target: Element, beDecorProps: BeDecoratedProps): void;
+    onDispatch(self: this): PAP;
 }

@@ -15,22 +15,23 @@
     "./be-composed.js": "./be-composed.js"
   },
   "files": [
-    "*.*"
+    "*.js",
+    "types.d.ts"
   ],
   "types": "types.d.ts",
   "scripts": {
     "serve": "node node_modules/may-it-serve",
-    "test": "playwright test",
-    "package-check": "package-check"
+    "test": "playwright test"
   },
   "dependencies": {
-    "be-decorated": "0.0.231",
-    "be-hive": "0.0.82"
+    "be-enhanced": "0.0.19",
+    "be-hive": "0.0.94",
+    "trans-render": "0.0.681",
+    "xtal-element": "0.0.561"
   },
   "devDependencies": {
-    "@skypack/package-check": "0.2.2",
-    "@playwright/test": "1.31.1",
-    "may-it-serve": "0.0.4",
+    "@playwright/test": "1.34.0",
+    "may-it-serve": "0.0.5",
     "xtal-shell": "0.0.27"
   },
   "repository": {

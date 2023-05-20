@@ -9,7 +9,7 @@
 		"strict": true,
 	},
 	"files":[
-		"be-composed.ts"
+		"be-composed2.ts"
 	],
 	"exclude":[
 		"build",

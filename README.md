@@ -37,9 +37,9 @@ In the extreme, we could use a guid, as demonstrated below:
 ```html
 <input be-composed='
     On change dispatch 402735ed-b9e8-4ef4-9e0d-3a6b385de863 as name of event.
-    Bubble said event.
-    Compose said event.
-    Make said event cancelable.
-    Stop propagation of said event.
+    Bubble.
+    Compose.
+    Be Cancelable.
+    Stop propagation.
 '>
 ```

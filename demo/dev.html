@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id='test'>
-        <template shadowroot='open'>
+        <template shadowrootmode='open'>
             <input be-composed='{
                 "dispatch":{
                     "change":{
@@ -33,15 +33,15 @@
         <script type=importmap>
             {
                 "imports": {
+                    "be-enhanced/": "../node_modules/be-enhanced/",
+                    "be-hive/":  "../node_modules/be-hive/",
                     "trans-render/": "../node_modules/trans-render/",
-                    "xtal-element/": "../node_modules/xtal-element/",
-                    "be-decorated/": "../node_modules/be-decorated/",
-                    "be-hive/":  "../node_modules/be-hive/"
+                    "xtal-element/": "../node_modules/xtal-element/"
                 }
             }
         </script>
         <script type=module>
-            import '../be-composed.js';
+            import '../be-composed2.js';
         </script>
 </body>
 </html>
