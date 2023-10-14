@@ -1,5 +1,7 @@
 # be-composed
 
+[TODO] move over to be-dispatching.
+
 [![Playwright Tests](https://github.com/bahrus/be-composed/actions/workflows/CI.yml/badge.svg)](https://github.com/bahrus/be-composed/actions/workflows/CI.yml)
 
 <a href="https://nodei.co/npm/be-composed/"><img src="https://nodei.co/npm/be-composed.png"></a>
